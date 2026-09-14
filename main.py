@@ -39,6 +39,16 @@ from core.updater import (
     show_full_announcement,
     perform_update
 )
+from core.tui import (
+    InteractiveMenu,
+    build_header,
+    build_metrics_card,
+    render_badge,
+    quick_confirm,
+    quick_pause,
+    read_key,
+    clear_screen
+)
 
 BANNER = f"""{Fore.CYAN}{Style.BRIGHT}
   ██████╗ ███████╗████████╗ █████╗ ███╗   ██╗██╗██████╗ ██████╗  ██████╗ ██╗  ██╗██╗   ██╗
@@ -827,116 +837,77 @@ def show_interactive_menu():
             except Exception:
                 cached_update_info = None
 
-        print(BANNER)
-
-        # Show update banner if new version is available!
-        if cached_update_info and cached_update_info.get("has_update"):
-            print(render_update_banner(cached_update_info, lang=CURRENT_LANG))
-            print()
-
         local_info = get_local_version_info()
-        local_ver = local_info.get("version", "1.0.0")
+        local_ver = local_info.get("version", "1.2.0")
         st = get_features_readiness(lang=CURRENT_LANG)
-        ready_label = f"{Fore.GREEN}[SIAP PAKAI]{Style.RESET_ALL}" if CURRENT_LANG == "ID" else f"{Fore.GREEN}[READY]{Style.RESET_ALL}"
+        ready_label = f"{Fore.GREEN}● [SIAP]{Style.RESET_ALL}" if CURRENT_LANG == "ID" else f"{Fore.GREEN}● [READY]{Style.RESET_ALL}"
+
+        update_msg = None
+        if cached_update_info and cached_update_info.get("has_update"):
+            update_msg = f"Update Tersedia: v{cached_update_info.get('remote_version')} (Pilih U)" if CURRENT_LANG == "ID" else f"Update Available: v{cached_update_info.get('remote_version')} (Select U)"
+
+        menu = InteractiveMenu(
+            title="PETANI PROXY",
+            subtitle="Pusat Scraper, Validator Multi-Protokol dan Local Gateway" if CURRENT_LANG == "ID" else "High-Performance Multi-Protocol Scraper and Local Rotating Gateway",
+            version=local_ver,
+            metrics_title="STATUS DAN KESIAPAN SISTEM" if CURRENT_LANG == "ID" else "SYSTEM READINESS AND METRICS",
+            metrics_data=[
+                ("Dependensi Inti", st.get('deps_badge', ''), "BansosRouter DB", st.get('sync', '')),
+                ("Webshare Hunter", st.get('webshare', ''), "Gateway (8888)", st.get('gateway', '')),
+                ("CapSolver API", st.get('capsolver_badge', ''), "Gudang Cache", st.get('storage', ''))
+            ],
+            update_notice=update_msg
+        )
 
         if CURRENT_LANG == "ID":
-            u_line = f"  {Fore.YELLOW}{Style.BRIGHT}[U]{Fore.WHITE}{Style.BRIGHT} 🚀 Update Tersedia!       {Fore.GREEN}v{cached_update_info.get('remote_version')} [PILIH UNTUK UPDATE]\n" if (cached_update_info and cached_update_info.get("has_update")) else f"  {Fore.GREEN}[U]{Fore.WHITE} 🔄 Cek & Update Versi     {Fore.GREEN}[v{local_ver} TERBARU]{Style.RESET_ALL}\n"
-            menu_box = f"""{Fore.CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  {Fore.WHITE}{Style.BRIGHT}🌾 PETANIPROXY v{local_ver} (PUSAT AMUNISI PROXY)
-  {Fore.LIGHTBLACK_EX}Amunisi Proxy Anti-Tumbang, Siap Diajak Tempur 24/7 Gaspol!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            menu.add_section("PIPELINES DAN RESIDENTIAL")
+            menu.add_item("w", "Webshare Residential", "Ekstraksi otomatis IP Residential via audio solver", st.get('webshare', ''))
+            menu.add_item("c", "Cloudflare WARP Local", "WireGuard Anycast tunnel bebas captcha, unlimited", f"{Fore.GREEN}● [ULTRA]{Style.RESET_ALL}")
+            menu.add_item("f", "Fast Async Harvester", "Scrape massal filter latency rendah asinkron", f"{Fore.GREEN}● [FAST]{Style.RESET_ALL}")
 
-  {Fore.WHITE}{Style.BRIGHT}📊 KESIAPAN AMUNISI : {st['progress_line']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}Dependensi Inti : {st['deps_badge']} {Fore.LIGHTBLACK_EX}{st['deps_desc']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}Webshare Hunter : {st['webshare']} {Fore.LIGHTBLACK_EX}{st['webshare_desc']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}CapSolver Engine: {st['capsolver_badge']} {Fore.LIGHTBLACK_EX}{st['capsolver_desc']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}BansosRouter DB : {st['sync']} {Fore.LIGHTBLACK_EX}{st['db_desc']}
-  {Fore.LIGHTBLACK_EX}└─ {Fore.WHITE}Stok di Gudang  : {st['storage']} {Fore.LIGHTBLACK_EX}{st['storage_desc']}
+            menu.add_section("LOCAL GATEWAY DAN PROFILES")
+            menu.add_item("g", "Mode Petani 24/7", "Daemon rotasi otomatis port 8888 (auto-heal and refill)", ready_label)
+            menu.add_item("1", "Profil Ternak Akun", "Khusus bot AI Grok/Qoder (Sync DB + Port 8888)", st.get('sync', ''))
+            menu.add_item("2", "Profil Web Scraper", "Rotasi agresif pool 30+ IP tiap request", ready_label)
+            menu.add_item("3", "Profil Low-Latency", "Node tercepat SG / ID / US (Ping rendah)", ready_label)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            menu.add_section("DIAGNOSTIK DAN EKSPOR")
+            menu.add_item("e", "Ekspor File Proxy", "Simpan daftar proxy bersih ke TXT, JSON, CSV", f"{Fore.CYAN}● [EKSPOR]{Style.RESET_ALL}")
+            menu.add_item("t", "Uji Kebocoran IP", "Audit live: bandingkan IP asli vs IP Gateway", st.get('gateway', ''))
+            menu.add_item("s", "Gudang Proxy Lokal", "Lihat dan kelola file proxy tersimpan di disk", st.get('storage', ''))
 
-  {Fore.YELLOW}{Style.BRIGHT}⭐ [MVP] AMUNISI SULTAN: IP RESIDENTIAL & CLOUDFLARE WARP
-  {Fore.YELLOW}{Style.BRIGHT}[W]{Fore.WHITE}{Style.BRIGHT} 🏢 Webshare Hunter Gacor   {st['webshare']} {Fore.YELLOW}(RESIDENTIAL MVP ⭐⭐⭐)
-     {Fore.GREEN}└─ Auto-Solve Captcha Suara • IP Rumah Asli • 10-30 Proxy/Akun
-  {Fore.CYAN}{Style.BRIGHT}[C]{Fore.WHITE}{Style.BRIGHT} 🚀 Cloudflare WARP Local    {Fore.GREEN}[ULTRA FAST]{Style.RESET_ALL} {Fore.CYAN}(BEBAS CAPTCHA, UNLIMITED)
-     {Fore.GREEN}└─ Akun WireGuard Resmi • Mixed SOCKS5/HTTP • Latency <100ms
-  {Fore.LIGHTCYAN_EX}{Style.BRIGHT}[F]{Fore.WHITE}{Style.BRIGHT} ⚡ aiohttp Fast Harvester   {Fore.GREEN}[KENCANG]{Style.RESET_ALL} {Fore.LIGHTBLACK_EX}(Filter <350ms dalam 1 detik)
-     {Fore.GREEN}└─ Sedot ribuan kandidat secara asinkron • Auto-sync 9Router
-
-  {Fore.MAGENTA}RACIKAN PROXY & GATEWAY LOKAL (PORT 8888)
-  {Fore.GREEN}[G]{Fore.WHITE} 🚜 Mode Petani AFK 24/7   {ready_label} {Fore.LIGHTBLACK_EX}Tinggal tidur, auto-prune IP busuk & refill non-stop
-  {Fore.GREEN}[1]{Fore.WHITE} 🐔 Racikan Ternak Akun    {st['sync']} {Fore.LIGHTBLACK_EX}Anti-limit buat Grok/Qoder (Sync 9Router + Port 8888)
-  {Fore.GREEN}[2]{Fore.WHITE} 🕷️ Racikan Scraper Barbar {ready_label} {Fore.LIGHTBLACK_EX}Pool 30+ IP, ganti IP tiap request
-  {Fore.GREEN}[3]{Fore.WHITE} ⚡ Racikan Ngacir Anti-Lag {ready_label} {Fore.LIGHTBLACK_EX}Ping <350ms, Node SG/ID/US
-
-  {Fore.MAGENTA}BUNGKUS HASIL PANEN & TES IDENTITAS
-  {Fore.CYAN}[E]{Fore.WHITE} 📥 Bungkus File Mentah    {Fore.GREEN}[SIAP EKSPOR]{Style.RESET_ALL} {Fore.LIGHTBLACK_EX}Sedot TXT, JSON, CSV buat bot lu
-  {Fore.CYAN}[T]{Fore.WHITE} 🧪 Uji Kesaktian Topeng   {st['gateway']} {Fore.LIGHTBLACK_EX}Tes live: Adu IP asli lu vs IP Gateway (Anti-Bocor)
-
-  {Fore.MAGENTA}PEMBARUAN & PUSAT PENGATURAN
-  {Fore.YELLOW}{Style.BRIGHT}[K]{Fore.WHITE}{Style.BRIGHT} ⚙️ Pengaturan Cepat       {Fore.GREEN}[PASTE & GO]{Style.RESET_ALL} {Fore.LIGHTBLACK_EX}Setup API CapSolver & Domain Email tanpa ngoding
-{u_line}  {Fore.YELLOW}[M]{Fore.WHITE} 🛠️ Oprek Suka-Suka        {ready_label} {Fore.LIGHTBLACK_EX}Racik protokol sendiri, pilih negara
-  {Fore.YELLOW}[S]{Fore.WHITE} 📂 Gudang Amunisi         {st['storage']} {Fore.LIGHTBLACK_EX}Stok proxy segar tersimpan di disk
-  {Fore.BLUE}[L]{Fore.WHITE} 🌐 Ganti Bahasa (EN/ID)   {Fore.LIGHTBLACK_EX}Currently: Bahasa Indonesia
-  {Fore.RED}[0]{Fore.WHITE} 💀 Cabut Dulu (Rebahan)   {Fore.LIGHTBLACK_EX}Tutup laptop, ngopi dulu atau sentuh rumput
-
-{Fore.CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  {Fore.LIGHTBLACK_EX}Maintainer: {Fore.YELLOW}@itzluthfi{Fore.LIGHTBLACK_EX}          Repository: {Fore.WHITE}github.com/itzluthfi
-{Fore.CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{Style.RESET_ALL}"""
-            prompt_str = f"{Fore.YELLOW}Pilih Opsi [W, C, F, G, 1-3, E, T, K, U, M, S, L, 0] (Saran: W atau C untuk speed monster): {Style.RESET_ALL}"
+            menu.add_section("PENGATURAN DAN SISTEM")
+            menu.add_item("k", "Pengaturan Cepat", "Konfigurasi API key CapSolver dan path database", f"{Fore.LIGHTBLACK_EX}[CONFIG]{Style.RESET_ALL}")
+            menu.add_item("u", "Cek Pembaruan", "Periksa dan update versi terbaru dari GitHub", f"{Fore.LIGHTBLACK_EX}[UPDATE]{Style.RESET_ALL}")
+            menu.add_item("m", "Manual Filter Lab", "Kustomisasi protokol dan filter negara ISO", ready_label)
+            menu.add_item("l", "Ganti Bahasa (EN/ID)", "Ubah bahasa antarmuka saat ini: ID", f"{Fore.LIGHTBLACK_EX}[LANG]{Style.RESET_ALL}")
+            menu.add_item("0", "Keluar", "Tutup aplikasi PetaniProxy", f"{Fore.RED}[KELUAR]{Style.RESET_ALL}")
         else:
-            u_line = f"  {Fore.YELLOW}{Style.BRIGHT}[U]{Fore.WHITE}{Style.BRIGHT} 🚀 New Update Available!  {Fore.GREEN}v{cached_update_info.get('remote_version')} [SELECT TO UPDATE]\n" if (cached_update_info and cached_update_info.get("has_update")) else f"  {Fore.GREEN}[U]{Fore.WHITE} 🔄 Check & Update Version {Fore.GREEN}[v{local_ver} LATEST]{Style.RESET_ALL}\n"
-            menu_box = f"""{Fore.CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  {Fore.WHITE}{Style.BRIGHT}🌾 PETANIPROXY v{local_ver} (ROTATING PROXY ARSENAL)
-  {Fore.LIGHTBLACK_EX}Battle-Tested Rotating Proxy Ammo — Zero BS, 100% Free!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            menu.add_section("PIPELINES AND RESIDENTIAL")
+            menu.add_item("w", "Webshare Residential", "Automated residential IP extraction via audio solver", st.get('webshare', ''))
+            menu.add_item("c", "Cloudflare WARP Local", "WireGuard Anycast zero-captcha local tunnel", f"{Fore.GREEN}● [ULTRA]{Style.RESET_ALL}")
+            menu.add_item("f", "Fast Async Harvester", "Mass concurrent scraper (low latency filter)", f"{Fore.GREEN}● [FAST]{Style.RESET_ALL}")
 
-  {Fore.WHITE}{Style.BRIGHT}📊 SYSTEM READINESS : {st['progress_line']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}Core Dependencies: {st['deps_badge']} {Fore.LIGHTBLACK_EX}{st['deps_desc']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}Webshare Hunter  : {st['webshare']} {Fore.LIGHTBLACK_EX}{st['webshare_desc']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}CapSolver Engine : {st['capsolver_badge']} {Fore.LIGHTBLACK_EX}{st['capsolver_desc']}
-  {Fore.LIGHTBLACK_EX}├─ {Fore.WHITE}BansosRouter DB  : {st['sync']} {Fore.LIGHTBLACK_EX}{st['db_desc']}
-  {Fore.LIGHTBLACK_EX}└─ {Fore.WHITE}Ammo in Storage  : {st['storage']} {Fore.LIGHTBLACK_EX}{st['storage_desc']}
+            menu.add_section("LOCAL GATEWAY AND PROFILES")
+            menu.add_item("g", "24/7 Farmer Daemon", "Auto-rotating port 8888 gateway (auto-prune and refill)", ready_label)
+            menu.add_item("1", "Bot Breeder Profile", "Tuned for Grok/Qoder bots (DB sync + Port 8888)", st.get('sync', ''))
+            menu.add_item("2", "High-Concurrency Scraper", "Aggressive rotation, fresh IP every request", ready_label)
+            menu.add_item("3", "Ultra-Low Latency Mode", "Low latency response nodes (SG / ID / US)", ready_label)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            menu.add_section("DIAGNOSTICS AND EXPORTS")
+            menu.add_item("e", "Export Clean Pool", "Export live proxy pool into TXT, JSON, CSV", f"{Fore.CYAN}● [EXPORT]{Style.RESET_ALL}")
+            menu.add_item("t", "Identity Leak Check", "Live audit: compare Direct IP vs Gateway IP", st.get('gateway', ''))
+            menu.add_item("s", "Local Ammo Storage", "Inspect and manage cached proxies sitting on disk", st.get('storage', ''))
 
-  {Fore.YELLOW}{Style.BRIGHT}⭐ [MVP] S-TIER ARSENAL: RESIDENTIAL & CLOUDFLARE WARP
-  {Fore.YELLOW}{Style.BRIGHT}[W]{Fore.WHITE}{Style.BRIGHT} 🏢 Webshare Hunter Elite   {st['webshare']} {Fore.YELLOW}(RESIDENTIAL MVP ⭐⭐⭐)
-     {Fore.GREEN}└─ Audio Captcha Solver • Real Residential IPs • 10-30 Nodes/Acc
-  {Fore.CYAN}{Style.BRIGHT}[C]{Fore.WHITE}{Style.BRIGHT} 🚀 Cloudflare WARP Local    {Fore.GREEN}[ULTRA FAST]{Style.RESET_ALL} {Fore.CYAN}(ZERO CAPTCHA, UNLIMITED)
-     {Fore.GREEN}└─ Official WireGuard Profile • Mixed SOCKS5/HTTP • Latency <100ms
-  {Fore.LIGHTCYAN_EX}{Style.BRIGHT}[F]{Fore.WHITE}{Style.BRIGHT} ⚡ aiohttp Fast Harvester   {Fore.GREEN}[FAST]{Style.RESET_ALL} {Fore.LIGHTBLACK_EX}(Sub-350ms filter in 1 second)
-     {Fore.GREEN}└─ Concurrent async scraping • Auto-syncs 9Router DB
+            menu.add_section("CONFIGURATION AND SYSTEM")
+            menu.add_item("k", "Quick Settings", "Configure CapSolver API key and database path", f"{Fore.LIGHTBLACK_EX}[CONFIG]{Style.RESET_ALL}")
+            menu.add_item("u", "Check for Updates", "Check and pull latest version from GitHub", f"{Fore.LIGHTBLACK_EX}[UPDATE]{Style.RESET_ALL}")
+            menu.add_item("m", "Manual Filter Lab", "Custom protocols and ISO country filters", ready_label)
+            menu.add_item("l", "Switch Language", "Toggle UI language (Currently: English)", f"{Fore.LIGHTBLACK_EX}[LANG]{Style.RESET_ALL}")
+            menu.add_item("0", "Exit", "Close PetaniProxy session", f"{Fore.RED}[EXIT]{Style.RESET_ALL}")
 
-  {Fore.MAGENTA}FREE PUBLIC ROTATING GATEWAY (LOCAL PORT 8888)
-  {Fore.GREEN}[G]{Fore.WHITE} 🚜 24/7 AFK Farmer Daemon {ready_label} {Fore.LIGHTBLACK_EX}Auto-prune dead nodes & refill non-stop
-  {Fore.GREEN}[1]{Fore.WHITE} 🐔 Bot Breeder Rig        {st['sync']} {Fore.LIGHTBLACK_EX}Anti-ban tuned for Grok/Qoder (Sync 9Router + Port 8888)
-  {Fore.GREEN}[2]{Fore.WHITE} 🕷️ Barbaric Web Scraper   {ready_label} {Fore.LIGHTBLACK_EX}30+ pool, fresh IP every request
-  {Fore.GREEN}[3]{Fore.WHITE} ⚡ Ludicrous Speed Mode   {ready_label} {Fore.LIGHTBLACK_EX}Ping <350ms, Node SG/ID/US
-
-  {Fore.MAGENTA}DUMP RAW AMMO & STEALTH TEST
-  {Fore.CYAN}[E]{Fore.WHITE} 📥 Dump Raw Ammo Files    {Fore.GREEN}[READY TO DUMP]{Style.RESET_ALL} {Fore.LIGHTBLACK_EX}Export TXT, JSON, CSV for bots
-  {Fore.CYAN}[T]{Fore.WHITE} 🧪 Stealth Mask Check     {st['gateway']} {Fore.LIGHTBLACK_EX}Live test: Real IP vs Gateway IP (Zero Leak)
- 
-  {Fore.MAGENTA}UPDATES & QUICK SETTINGS
-  {Fore.YELLOW}{Style.BRIGHT}[K]{Fore.WHITE}{Style.BRIGHT} ⚙️ Quick Settings Lab      {Fore.GREEN}[PASTE & GO]{Style.RESET_ALL} {Fore.LIGHTBLACK_EX}Setup CapSolver Key & Custom Domain with zero coding
-{u_line}  {Fore.YELLOW}[M]{Fore.WHITE} 🛠️ Custom Lab Workshop    {ready_label} {Fore.LIGHTBLACK_EX}Tweak protocols, filter ISO countries
-  {Fore.YELLOW}[S]{Fore.WHITE} 📂 Ammo Storage Vault     {st['storage']} {Fore.LIGHTBLACK_EX}Check active proxies sitting on disk
-  {Fore.BLUE}[L]{Fore.WHITE} 🌐 Switch Language (EN/ID){Fore.LIGHTBLACK_EX}Currently: English
-  {Fore.RED}[0]{Fore.WHITE} 💀 Rage Quit              {Fore.LIGHTBLACK_EX}Close terminal, sip coffee & go touch grass
-
-{Fore.CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  {Fore.LIGHTBLACK_EX}Maintainer: {Fore.YELLOW}@itzluthfi{Fore.LIGHTBLACK_EX}          Repository: {Fore.WHITE}github.com/itzluthfi
-{Fore.CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{Style.RESET_ALL}"""
-            prompt_str = f"{Fore.YELLOW}Select Option [W, C, F, G, 1-3, E, T, K, U, M, S, L, 0] (Pro-tip: Press W or C for godmode): {Style.RESET_ALL}"
-
-
-
-        print(menu_box)
-        try:
-            choice = input(prompt_str).strip()
-        except (KeyboardInterrupt, EOFError):
-            print(f"\n{Fore.YELLOW}Goodbye!{Style.RESET_ALL}")
+        choice = menu.run()
+        if not choice or choice in ("0", "q"):
             break
 
         if choice.lower() == "u":
@@ -1207,18 +1178,16 @@ print("IP Aktif Residential:", resp.json()["ip"])
         elif choice.lower() in ("s", "saved"):
             view_saved_results()
         elif choice == "0" or choice.lower() == "q":
-            goodbye_msg = "💀 Capek panen, cabut dulu ah... Jangan lupa sentuh rumput bos! 👋" if CURRENT_LANG == "ID" else "💀 Session terminated — go touch some grass! 👋"
-            print(f"\n{Fore.YELLOW}{goodbye_msg}{Style.RESET_ALL}\n")
+            goodbye_msg = "Sesi PetaniProxy selesai." if CURRENT_LANG == "ID" else "PetaniProxy session ended."
+            print(f"\n{Fore.LIGHTBLACK_EX}{goodbye_msg}{Style.RESET_ALL}\n")
             break
         else:
-            invalid_msg = "Pilihan tidak valid. Silakan pilih W, C, F, G, 1-3, E, T, K, U, M, S, L, atau 0." if CURRENT_LANG == "ID" else "Invalid option. Please choose W, C, F, G, 1-3, E, T, K, U, M, S, L, or 0."
+            invalid_msg = "Pilihan tidak valid." if CURRENT_LANG == "ID" else "Invalid option."
             print(f"{Fore.RED}{invalid_msg}{Style.RESET_ALL}")
 
-
-
         try:
-            pause_msg = "[Tekan Enter untuk kembali ke menu utama...]" if CURRENT_LANG == "ID" else "[Press Enter to return to main menu...]"
-            input(f"\n{Fore.LIGHTBLACK_EX}{pause_msg}{Style.RESET_ALL}")
+            pause_msg = "Tekan tombol apa saja untuk kembali ke menu utama..." if CURRENT_LANG == "ID" else "Press any key to return to main menu..."
+            quick_pause(pause_msg)
         except (KeyboardInterrupt, EOFError):
             break
 
