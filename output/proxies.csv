@@ -1,28 +1,27 @@
 protocol,ip,port,proxy,anonymity,latency_ms,country_code,country,city,isp,egress_ip
-http,43.153.123.79,80,43.153.123.79:80,Elite,282,US,United States,Santa Clara,Shenzhen Tencent Computer Systems Company Limited,43.153.123.79
-http,73.162.86.230,443,73.162.86.230:443,Elite,483,??,Unknown,-,-,73.162.86.230
-http,165.154.162.73,8888,165.154.162.73:8888,Elite,504,US,United States,Los Angeles,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED,165.154.162.73
-http,38.51.207.104,8080,38.51.207.104:8080,Elite,517,VE,Venezuela,Maracaibo,Tecnoven Services C.A,38.51.207.111
-http,190.97.236.128,999,190.97.236.128:999,Elite,586,VE,Venezuela,Maporal,Viginet C.A,153.51.201.35
-http,73.162.86.230,8195,73.162.86.230:8195,Elite,618,US,United States,San Jose,Comcast Cable Communications,73.162.86.230
-http,190.97.236.129,999,190.97.236.129:999,Elite,651,VE,Venezuela,San Carlos del Zulia,Viginet C.A,153.51.201.35
-http,2.27.63.250,8888,2.27.63.250:8888,Elite,679,DE,Germany,Frankfurt am Main,Kyonix Networks Limited,2.27.63.250
-http,95.3.69.222,8080,95.3.69.222:8080,Elite,856,TR,Türkiye,Istanbul,Turk Telekomunikasyon Anonim Sirketi,95.3.69.222
-http,167.86.104.220,80,167.86.104.220:80,Elite,890,FR,France,Lauterbourg,Contabo GmbH,167.86.104.220
-http,37.59.125.131,8888,37.59.125.131:8888,Elite,987,FR,France,Roubaix,OVH SAS,82.66.253.58
-http,103.237.102.191,11111,103.237.102.191:11111,Elite,1069,DE,Germany,Frankfurt am Main,Zenlayer Inc,103.237.102.191
-http,24.55.20.6,3030,24.55.20.6:3030,Elite,1118,US,United States,Austin,Charter Communications Inc,24.55.20.6
-http,194.87.208.22,443,194.87.208.22:443,Elite,1155,NL,The Netherlands,Amsterdam,"Timeweb, LLP",194.87.208.22
-http,8.215.25.3,2080,8.215.25.3:2080,Elite,1197,ID,Indonesia,Jakarta,"Alibaba (US) Technology Co., Ltd.",8.215.25.3
-http,124.156.194.52,8080,124.156.194.52:8080,Elite,1282,SG,Singapore,Singapore,Tencent Cloud Computing (Beijing) Co,124.156.194.52
-http,14.251.13.20,8080,14.251.13.20:8080,Elite,1302,VN,Vietnam,Hanoi,VNPT,14.251.13.20
-http,37.187.109.70,10111,37.187.109.70:10111,Elite,1321,FR,France,Roubaix,OVH SAS,37.187.109.70
-http,171.239.152.230,8080,171.239.152.230:8080,Elite,1335,VN,Vietnam,Ho Chi Minh City,Viettel Corporation,171.239.152.230
-http,84.8.216.230,2001,84.8.216.230:2001,Elite,1654,MA,Morocco,Casablanca,Oracle Corporation,84.8.216.230
-http,210.211.113.35,80,210.211.113.35:80,Elite,1704,VN,Vietnam,Ho Chi Minh City,VTDC,210.211.113.35
-http,186.33.45.220,999,186.33.45.220:999,Elite,1945,EC,Ecuador,Latacunga,Ufinet Panama S.A.,186.33.45.220
-http,172.104.56.95,8888,172.104.56.95:8888,Elite,1978,SG,Singapore,Singapore,Akamai Technologies,172.104.56.95
-http,210.211.113.33,80,210.211.113.33:80,Elite,2078,VN,Vietnam,Ho Chi Minh City,VTDC,210.211.113.33
-http,187.188.169.140,999,187.188.169.140:999,Elite,2138,MX,Mexico,Oaxaca City,Total Play Telecomunicaciones SA De CV,187.188.169.140
-http,43.250.182.250,8080,43.250.182.250:8080,Elite,2266,ID,Indonesia,Ketanggungan,PT Aris Media Globalindo,43.250.182.250
-http,210.211.113.37,80,210.211.113.37:80,Elite,2386,VN,Vietnam,Ho Chi Minh City,VTDC,210.211.113.37
+http,34.69.61.247,80,34.69.61.247:80,Elite,248,US,United States,Council Bluffs,Google LLC,34.134.26.114
+http,165.154.162.73,8888,165.154.162.73:8888,Elite,252,US,United States,Los Angeles,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED,165.154.162.73
+http,184.75.221.82,3118,184.75.221.82:3118,Elite,468,CA,Canada,Toronto,Amanah Tech Inc.,184.75.221.82
+http,103.237.102.191,11111,103.237.102.191:11111,Elite,647,DE,Germany,Frankfurt am Main,Zenlayer Inc,103.237.102.191
+http,190.97.236.129,999,190.97.236.129:999,Elite,662,VE,Venezuela,San Carlos del Zulia,Viginet C.A,153.51.201.35
+http,190.97.236.128,999,190.97.236.128:999,Elite,671,VE,Venezuela,Maporal,Viginet C.A,153.51.201.35
+http,73.162.86.230,8195,73.162.86.230:8195,Elite,761,??,Unknown,-,-,73.162.86.230
+http,2.27.63.250,8888,2.27.63.250:8888,Elite,874,DE,Germany,Frankfurt am Main,Kyonix Networks Limited,2.27.63.250
+http,101.32.65.42,8888,101.32.65.42:8888,Elite,883,HK,Hong Kong,Hong Kong,Aceville Pte.ltd,101.32.76.202
+http,73.162.86.230,8080,73.162.86.230:8080,Elite,934,??,Unknown,-,-,73.162.86.230
+http,144.124.251.24,10008,144.124.251.24:10008,Elite,943,NL,The Netherlands,Amsterdam,Servers Tech Fzco,144.124.251.24
+http,43.153.123.79,80,43.153.123.79:80,Elite,956,US,United States,Santa Clara,Shenzhen Tencent Computer Systems Company Limited,43.153.123.79
+http,37.59.125.131,8888,37.59.125.131:8888,Elite,996,FR,France,Roubaix,OVH SAS,82.66.253.58
+http,73.162.86.230,8181,73.162.86.230:8181,Elite,1004,??,Unknown,-,-,73.162.86.230
+http,130.110.103.245,3128,130.110.103.245:3128,Elite,1135,SA,Saudi Arabia,Jeddah,Oracle Corporation,130.110.103.245
+http,27.147.153.179,8158,27.147.153.179:8158,Elite,1339,BD,Bangladesh,Dhaka,Link3 Technologies Limited,27.147.153.179
+http,103.134.27.129,8080,103.134.27.129:8080,Elite,1365,BD,Bangladesh,Dhaka,Md Abdur Rouf,116.204.148.29
+http,43.128.76.140,8081,43.128.76.140:8081,Elite,1401,SG,Singapore,Singapore,Shenzhen Tencent Computer Systems Company Limited,43.128.76.140
+http,210.211.113.37,80,210.211.113.37:80,Elite,1447,VN,Vietnam,Ho Chi Minh City,VTDC,210.211.113.37
+http,31.77.151.149,8080,31.77.151.149:8080,Elite,1511,FI,Finland,Helsinki,Play2go International Limited,2.27.207.236
+http,190.97.241.106,999,190.97.241.106:999,Elite,1742,VE,Venezuela,Táriba,Viginet C.A,190.97.241.106
+http,84.8.216.230,2001,84.8.216.230:2001,Elite,1767,MA,Morocco,Casablanca,Oracle Corporation,84.8.216.230
+http,58.187.104.62,2096,58.187.104.62:2096,Elite,1776,VN,Vietnam,Ho Chi Minh City,FPT Telecom Company,58.187.104.62
+http,45.84.222.220,8080,45.84.222.220:8080,Elite,1920,NL,The Netherlands,Amsterdam,Play2go International Limited,45.84.222.220
+http,73.162.86.230,8194,73.162.86.230:8194,Elite,2086,US,United States,San Jose,Comcast Cable Communications,73.162.86.230
+http,14.251.13.20,8080,14.251.13.20:8080,Elite,2405,VN,Vietnam,Hanoi,VNPT,14.251.13.20
