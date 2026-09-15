@@ -1,21 +1,18 @@
 protocol,ip,port,proxy,anonymity,latency_ms,country_code,country,city,isp,egress_ip
-http,47.254.122.220,5443,47.254.122.220:5443,Elite,347,US,United States,Minkler,Alibaba Cloud LLC,47.254.122.220
-http,198.46.200.118,12888,198.46.200.118:12888,Elite,508,US,United States,Los Angeles,HostPapa,198.46.200.118
-http,190.97.236.128,999,190.97.236.128:999,Elite,539,VE,Venezuela,Maporal,Viginet C.A,153.51.201.35
-http,190.97.236.129,999,190.97.236.129:999,Elite,541,VE,Venezuela,San Carlos del Zulia,Viginet C.A,153.51.201.35
-http,157.173.115.35,1081,157.173.115.35:1081,Elite,581,FR,France,Lauterbourg,Contabo GmbH,157.173.115.35
-http,95.3.69.222,8080,95.3.69.222:8080,Elite,839,TR,Türkiye,Istanbul,Turk Telekomunikasyon Anonim Sirketi,95.3.69.222
-http,2.27.63.250,8118,2.27.63.250:8118,Elite,855,DE,Germany,Frankfurt am Main,Kyonix Networks Limited,2.27.63.250
-http,165.154.162.73,8888,165.154.162.73:8888,Elite,1077,US,United States,Los Angeles,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED,165.154.162.73
-http,47.81.56.193,8888,47.81.56.193:8888,Elite,1334,TH,Thailand,Bangkok,Alibaba.com LLC,47.81.56.193
-http,103.237.102.191,11111,103.237.102.191:11111,Elite,1380,DE,Germany,Frankfurt am Main,Zenlayer Inc,103.237.102.191
-http,43.156.199.63,8081,43.156.199.63:8081,Elite,1388,SG,Singapore,Singapore,Shenzhen Tencent Computer Systems Company Limited,43.156.199.63
-http,202.62.57.235,8080,202.62.57.235:8080,Elite,1407,KH,Cambodia,Phnom Penh,"COGETEL Co., Ltd",202.62.57.235
-http,14.251.13.20,8080,14.251.13.20:8080,Elite,1419,VN,Vietnam,Hanoi,VNPT,14.251.13.20
-http,24.55.20.6,3030,24.55.20.6:3030,Elite,1677,US,United States,Austin,Charter Communications Inc,24.55.20.6
-http,43.109.48.180,9999,43.109.48.180:9999,Elite,1725,VN,Vietnam,Hanoi,"Zhejiang Taobao Network Co., Ltd",43.109.48.180
-http,152.53.183.107,8081,152.53.183.107:8081,Elite,1958,DE,Germany,Nuremberg,netcup GmbH,152.53.183.107
-http,184.75.221.82,3118,184.75.221.82:3118,Elite,2183,CA,Canada,Toronto,Amanah Tech Inc.,184.75.221.82
-http,154.59.56.78,999,154.59.56.78:999,Elite,2444,VE,Venezuela,Santa Cruz de Mora,Cogent Communications,154.59.56.73
-http,107.167.18.122,443,107.167.18.122:443,Elite,2472,US,United States,Los Angeles,Sharktech,107.167.18.99
-http,115.127.190.42,6979,115.127.190.42:6979,Elite,2478,BD,Bangladesh,Dhaka,BRACNet Limited,115.127.190.42
+http,198.46.200.118,12888,198.46.200.118:12888,Elite,117,US,United States,Los Angeles,HostPapa,198.46.200.118
+http,147.182.156.27,8080,147.182.156.27:8080,Elite,370,CA,Canada,Toronto,"DigitalOcean, LLC",147.182.156.27
+http,190.97.236.129,999,190.97.236.129:999,Elite,715,VE,Venezuela,San Carlos del Zulia,Viginet C.A,153.51.201.35
+http,47.237.138.184,3128,47.237.138.184:3128,Elite,918,SG,Singapore,Singapore,"Alibaba (US) Technology Co., Ltd.",47.237.138.184
+http,13.215.153.143,80,13.215.153.143:80,Elite,946,SG,Singapore,Singapore,Amazon Technologies Inc.,13.215.153.143
+http,172.104.56.95,8888,172.104.56.95:8888,Elite,961,SG,Singapore,Singapore,Akamai Technologies,172.104.56.95
+http,47.245.117.43,80,47.245.117.43:80,Elite,1058,SG,Singapore,Singapore,"Alibaba (US) Technology Co., Ltd.",47.245.117.43
+http,47.81.56.193,8888,47.81.56.193:8888,Elite,1092,TH,Thailand,Bangkok,Alibaba.com LLC,47.81.56.193
+http,107.167.18.122,443,107.167.18.122:443,Elite,1145,US,United States,Los Angeles,Sharktech,107.167.18.99
+http,14.251.13.20,8080,14.251.13.20:8080,Elite,1219,VN,Vietnam,Hanoi,VNPT,14.251.13.20
+http,37.59.125.131,8888,37.59.125.131:8888,Elite,1263,FR,France,Roubaix,OVH SAS,82.66.253.58
+http,103.237.102.191,11111,103.237.102.191:11111,Elite,1759,DE,Germany,Frankfurt am Main,Zenlayer Inc,103.237.102.191
+http,190.97.236.128,999,190.97.236.128:999,Elite,1774,VE,Venezuela,Maporal,Viginet C.A,153.51.201.35
+http,95.3.69.222,8080,95.3.69.222:8080,Elite,2122,TR,Türkiye,Istanbul,Turk Telekomunikasyon Anonim Sirketi,95.3.69.222
+http,89.110.124.45,8888,89.110.124.45:8888,Elite,2268,NL,The Netherlands,Amsterdam,Servers Tech Fzco,89.110.124.45
+http,184.75.221.82,3118,184.75.221.82:3118,Elite,2339,CA,Canada,Toronto,Amanah Tech Inc.,184.75.221.82
+http,81.158.71.182,8888,81.158.71.182:8888,Elite,2383,GB,United Kingdom,Darlington,BT Public Internet Service,141.98.100.200
