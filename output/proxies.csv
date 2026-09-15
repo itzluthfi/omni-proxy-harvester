@@ -1,20 +1,21 @@
 protocol,ip,port,proxy,anonymity,latency_ms,country_code,country,city,isp,egress_ip
-http,107.150.41.226,18080,107.150.41.226:18080,Elite,235,US,United States,Kansas City,"Nocix, LLC",107.150.41.226
-http,184.75.221.82,3118,184.75.221.82:3118,Elite,273,CA,Canada,Toronto,Amanah Tech Inc.,184.75.221.82
-http,190.97.236.128,999,190.97.236.128:999,Elite,652,VE,Venezuela,Maporal,Viginet C.A,153.51.201.35
-http,95.211.174.135,3128,95.211.174.135:3128,Elite,656,NL,The Netherlands,Haarlem,LeaseWeb Netherlands B.V.,95.211.174.135
-http,103.237.102.191,11111,103.237.102.191:11111,Elite,691,DE,Germany,Frankfurt am Main,Zenlayer Inc,103.237.102.191
-http,1.231.81.166,3128,1.231.81.166:3128,Elite,802,KR,South Korea,Dobong-gu,SK Broadband Co Ltd,1.231.81.166
-http,157.173.115.35,1081,157.173.115.35:1081,Elite,986,FR,France,Lauterbourg,Contabo GmbH,157.173.115.35
-http,167.86.104.220,80,167.86.104.220:80,Elite,987,FR,France,Lauterbourg,Contabo GmbH,167.86.104.220
-http,37.59.125.131,8888,37.59.125.131:8888,Elite,1056,FR,France,Roubaix,OVH SAS,82.66.253.58
-http,124.156.194.52,8081,124.156.194.52:8081,Elite,1101,SG,Singapore,Singapore,Tencent Cloud Computing (Beijing) Co,124.156.194.52
-http,107.167.18.122,443,107.167.18.122:443,Elite,1162,US,United States,Los Angeles,Sharktech,107.167.18.99
-http,14.251.13.20,8080,14.251.13.20:8080,Elite,1178,VN,Vietnam,Hanoi,VNPT,14.251.13.20
-http,27.147.138.166,8158,27.147.138.166:8158,Elite,1308,BD,Bangladesh,Dhaka,Link3 Technologies Limited,27.147.138.166
-http,43.156.199.63,8080,43.156.199.63:8080,Elite,1401,SG,Singapore,Singapore,Shenzhen Tencent Computer Systems Company Limited,43.156.199.63
-http,43.153.123.79,80,43.153.123.79:80,Elite,1597,US,United States,Santa Clara,Shenzhen Tencent Computer Systems Company Limited,43.153.123.79
-http,47.81.56.193,8888,47.81.56.193:8888,Elite,1669,TH,Thailand,Bangkok,Alibaba.com LLC,47.81.56.193
-http,190.97.236.129,999,190.97.236.129:999,Elite,1670,VE,Venezuela,San Carlos del Zulia,Viginet C.A,153.51.201.35
-http,8.219.97.248,80,8.219.97.248:80,Elite,2371,SG,Singapore,Singapore,Alibaba Cloud (Singapore) Private Limited,8.219.64.236
-http,58.187.104.62,2035,58.187.104.62:2035,Elite,2379,VN,Vietnam,Ho Chi Minh City,FPT Telecom Company,116.101.76.67
+http,47.254.122.220,5443,47.254.122.220:5443,Elite,347,US,United States,Minkler,Alibaba Cloud LLC,47.254.122.220
+http,198.46.200.118,12888,198.46.200.118:12888,Elite,508,US,United States,Los Angeles,HostPapa,198.46.200.118
+http,190.97.236.128,999,190.97.236.128:999,Elite,539,VE,Venezuela,Maporal,Viginet C.A,153.51.201.35
+http,190.97.236.129,999,190.97.236.129:999,Elite,541,VE,Venezuela,San Carlos del Zulia,Viginet C.A,153.51.201.35
+http,157.173.115.35,1081,157.173.115.35:1081,Elite,581,FR,France,Lauterbourg,Contabo GmbH,157.173.115.35
+http,95.3.69.222,8080,95.3.69.222:8080,Elite,839,TR,Türkiye,Istanbul,Turk Telekomunikasyon Anonim Sirketi,95.3.69.222
+http,2.27.63.250,8118,2.27.63.250:8118,Elite,855,DE,Germany,Frankfurt am Main,Kyonix Networks Limited,2.27.63.250
+http,165.154.162.73,8888,165.154.162.73:8888,Elite,1077,US,United States,Los Angeles,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED,165.154.162.73
+http,47.81.56.193,8888,47.81.56.193:8888,Elite,1334,TH,Thailand,Bangkok,Alibaba.com LLC,47.81.56.193
+http,103.237.102.191,11111,103.237.102.191:11111,Elite,1380,DE,Germany,Frankfurt am Main,Zenlayer Inc,103.237.102.191
+http,43.156.199.63,8081,43.156.199.63:8081,Elite,1388,SG,Singapore,Singapore,Shenzhen Tencent Computer Systems Company Limited,43.156.199.63
+http,202.62.57.235,8080,202.62.57.235:8080,Elite,1407,KH,Cambodia,Phnom Penh,"COGETEL Co., Ltd",202.62.57.235
+http,14.251.13.20,8080,14.251.13.20:8080,Elite,1419,VN,Vietnam,Hanoi,VNPT,14.251.13.20
+http,24.55.20.6,3030,24.55.20.6:3030,Elite,1677,US,United States,Austin,Charter Communications Inc,24.55.20.6
+http,43.109.48.180,9999,43.109.48.180:9999,Elite,1725,VN,Vietnam,Hanoi,"Zhejiang Taobao Network Co., Ltd",43.109.48.180
+http,152.53.183.107,8081,152.53.183.107:8081,Elite,1958,DE,Germany,Nuremberg,netcup GmbH,152.53.183.107
+http,184.75.221.82,3118,184.75.221.82:3118,Elite,2183,CA,Canada,Toronto,Amanah Tech Inc.,184.75.221.82
+http,154.59.56.78,999,154.59.56.78:999,Elite,2444,VE,Venezuela,Santa Cruz de Mora,Cogent Communications,154.59.56.73
+http,107.167.18.122,443,107.167.18.122:443,Elite,2472,US,United States,Los Angeles,Sharktech,107.167.18.99
+http,115.127.190.42,6979,115.127.190.42:6979,Elite,2478,BD,Bangladesh,Dhaka,BRACNet Limited,115.127.190.42
